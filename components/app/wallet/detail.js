@@ -22,7 +22,8 @@ class WalletDetail extends Page {
   static properties = {
     walletname: {},
     walletNameDecoded: {},
-    wallet: {}
+    wallet: {},
+    tab: {}
   }
 
   constructor() {
@@ -42,20 +43,20 @@ class WalletDetail extends Page {
       <h1><cl-pill class="tip">Wallet</cl-pill>${decodeURIComponent(this.walletname)}</h1>
       <cl-pill class="balance">${this.wallet?.balance} BTC</cl-pill>
     </header>
-    <cl-tabs>
-      <span slot="tab" ?selected=${true}>Transactions</span>
-      <span slot="panel" ?selected=${true}>
+    <cl-tabs selected=${this.tab}>
+      <span slot="tab" tab="tx">Transactions</span>
+      <span slot="panel" tab="tx">
         ${this.wallet && this.renderTxs()}
       </span>
-      <span slot="tab">Used Addresses</span>
-      <span slot="panel">
+      <span slot="tab" tab="used-addrs">Used Addresses</span>
+      <span slot="panel" tab="used-addrs">
         ${this.wallet && this.renderAddrs()}
       </span>
-      <span slot="tab">Send</span>
-      <span slot="panel">
+      <span slot="tab" tab="send">Send</span>
+      <span slot="panel" tab="send">
       </span>
-      <span slot="tab">Receive</span>
-      <span slot="panel">
+      <span slot="tab" tab="receive">Receive</span>
+      <span slot="panel" tab="receive">
       </span>
     </cl-tabs>
     `

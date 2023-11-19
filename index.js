@@ -7,12 +7,12 @@ export const routes = [
     action: async() => await import("./components/app/home.js")
   },
   {
-    path: "wallet/:walletname", // wallet name is URI encoded
+    path: "wallet/:walletname/:tab", // wallet name is URI encoded
     component: "cl-wallet-detail",
     action: async() => await import("./components/app/wallet/detail.js")
   },
   {
-    path: "wallet/:walletname/:txid",
+    path: "wallet/:walletname/tx/:txid",
     component: "cl-tx-detail",
     action: async() => await import("./components/app/wallet/tx/detail.js")
   },

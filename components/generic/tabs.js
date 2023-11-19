@@ -49,20 +49,39 @@ class Tabs extends LitElement {
     }
   `
 
-  connectedCallback() {
-    super.connectedCallback()
+  static properties = {
+    selected: {}
   }
 
-  selectTab(tabIndex) {
-    this.tabs.forEach(tab => tab.removeAttribute("selected"))
-    this.tabs[tabIndex].setAttribute("selected", "")
-    this.panels.forEach(panel => panel.removeAttribute("selected"))
-    this.panels[tabIndex].setAttribute("selected", "")
+  connectedCallback() {
+    super.connectedCallback()
+    this.updateTabs()
+  }
+
+  updateTabs() {
+    super.update()
+    this.tabs.forEach(tab => {
+      if (tab.getAttribute("tab") === this.selected) {
+        tab.setAttribute("selected", "")
+      } else {
+        tab.removeAttribute("selected")
+      }
+    })
+    this.panels.forEach(panel => {
+      if (panel.getAttribute("tab") === this.selected) {
+        panel.setAttribute("selected", "")
+      } else {
+        panel.removeAttribute("selected")
+      }
+    })
   }
 
   handleSelect(e) {
-    const index = this.tabs.indexOf(e.target)
-    this.selectTab(index)
+    this.selected = e.target.getAttribute("tab")
+    const segments = window.location.hash.split("/")
+    segments[segments.length-1] = this.selected
+    window.location = segments.join("/")
+    this.updateTabs()
   }
 
   render() {

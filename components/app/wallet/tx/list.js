@@ -30,7 +30,7 @@ class TxList extends Page {
   
   renderTx(tx) {
     return html`
-    <cl-card @click=${() => window.location = `#/wallet/${encodeURIComponent(this.walletname)}/${tx.txid}`}>
+    <cl-card @click=${() => window.location = `#/wallet/${encodeURIComponent(this.walletname)}/tx/${tx.txid}`}>
       <cl-icon name=${tx.category === "send" ? "sent" : "received"}></cl-icon>
       <span class="mono">${fmtId(tx.txid)}</span>
       <span class=${parseFloat(tx.amount) < 0 ? "outgoing" : ""}>${tx.amount}</span>

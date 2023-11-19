@@ -5,14 +5,6 @@ import { fmtId } from "../../../../util/fmt.js";
 import { map } from "lit/directives/map.js";
 
 class TxDetail extends Page {
-
-  static styles = [
-    ...super.styles,
-    css`
-    
-    `
-  ]
-
   static properties = {
     walletname: {},
     txid: {},
