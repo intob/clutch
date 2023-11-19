@@ -4,6 +4,6 @@ export async function getNewAddr(label) {
   return rpc("getnewaddress", [label])
 }
 
-export async function listReceiveAddr() {
+export async function listUsedAddr() {
   return (await rpc("listreceivedbyaddress", [1, false])).result
 }

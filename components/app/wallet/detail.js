@@ -46,31 +46,38 @@ class WalletDetail extends Page {
     <cl-tabs selected=${this.tab}>
       <span slot="tab" tab="tx">Transactions</span>
       <span slot="panel" tab="tx">
-        ${this.wallet && this.tab === "tx" && this.renderTxs()}
+        ${this.wallet && this.tab === "tx" && this.renderTxList()}
       </span>
-      <span slot="tab" tab="used-addrs">Used Addresses</span>
-      <span slot="panel" tab="used-addrs">
-        ${this.wallet && this.tab === "used-addrs" && this.renderAddrs()}
+      <span slot="tab" tab="used-addr">Used Addresses</span>
+      <span slot="panel" tab="used-addr">
+        ${this.wallet && this.tab === "used-addr" && this.renderUsedAddrList()}
       </span>
       <span slot="tab" tab="send">Send</span>
       <span slot="panel" tab="send">
       </span>
-      <span slot="tab" tab="receive">Receive</span>
-      <span slot="panel" tab="receive">
+      <span slot="tab" tab="recv">Receive</span>
+      <span slot="panel" tab="recv">
+        ${this.wallet && this.tab === "recv" && this.renderRecvAddr()}
       </span>
     </cl-tabs>
     `
   }
 
-  renderTxs() {
+  renderTxList() {
     return html`
     <cl-tx-list walletname=${this.walletNameDecoded}></cl-tx-list>
     `
   }
 
-  renderAddrs() {
+  renderUsedAddrList() {
     return html`
     <cl-used-addr-list walletname=${this.walletNameDecoded}></cl-used-addr-list>
+    `
+  }
+
+  renderRecvAddr() {
+    return html`
+    <cl-recv-addr walletname=${this.walletNameDecoded}></cl-recv-addr>
     `
   }
 }

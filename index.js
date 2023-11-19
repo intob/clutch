@@ -41,6 +41,7 @@ import("./components/app/nav/bar.js")
 import("./components/app/nav/dropdown.js")
 import("./components/app/wallet/tx/list.js")
 import("./components/app/wallet/addr/used.js")
+import("./components/app/wallet/addr/recv.js")
 // generic
 import("./components/generic/button.js")
 import("./components/generic/card.js")

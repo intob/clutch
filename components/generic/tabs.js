@@ -55,11 +55,6 @@ class Tabs extends LitElement {
 
   connectedCallback() {
     super.connectedCallback()
-    this.updateTabs()
-  }
-
-  updateTabs() {
-    super.update()
     this.tabs.forEach(tab => {
       if (tab.getAttribute("tab") === this.selected) {
         tab.setAttribute("selected", "")
@@ -77,19 +72,17 @@ class Tabs extends LitElement {
   }
 
   handleSelect(e) {
-    this.selected = e.target.getAttribute("tab")
     const segments = window.location.hash.split("/")
-    segments[segments.length-1] = this.selected
+    segments[segments.length-1] = e.target.getAttribute("tab")
     window.location = segments.join("/")
-    this.updateTabs()
   }
 
   render() {
     return html`
-      <nav>
-        <slot name="tab" role="button" @click=${e => this.handleSelect(e)}></slot>
-      </nav>
-      <slot name="panel"></slot>
+    <nav>
+      <slot name="tab" role="button" @click=${e => this.handleSelect(e)}></slot>
+    </nav>
+    <slot name="panel"></slot>
     `
   }
 

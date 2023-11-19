@@ -1,6 +1,6 @@
 import { html, css, LitElement } from "lit"
-import { getWalletInfo, listWallets } from "../../util/rpc/wallet.js"
 import { map } from "lit/directives/map.js"
+import { listWallets } from "../../util/rpc/wallet.js"
 
 class Home extends LitElement {
 

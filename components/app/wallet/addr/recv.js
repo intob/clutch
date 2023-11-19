@@ -1,26 +1,25 @@
-import { map } from "lit/directives/map.js";
-import { listUsedAddr } from "../../../../util/rpc/addr.js";
+import { getNewAddr } from "../../../../util/rpc/addr.js";
 import { selectWallet } from "../../../../util/rpc/wallet.js";
 import { Page } from "../../../generic/page.js";
 import { html } from "lit";
 
-class UsedAddrList extends Page {
+class RecvAddr extends Page {
   static properties = {
     walletname: {},
-    addrs: {}
+    addr: {}
   }
 
   async connectedCallback() {
     super.connectedCallback()
     await selectWallet(this.walletname)
-    this.addrs = await listUsedAddr()
+    this.addr = await getNewAddr()
   }
 
   render() {
-    return this.addrs && map(this.addrs, a => this.renderAddr(a))
+    return this.addr && this.renderAddr()
   }
 
-  renderAddr(a) {
+  renderAddr() {
     return html`
     <cl-card>
       <span class="mono">${a.address}</span>
@@ -29,4 +28,4 @@ class UsedAddrList extends Page {
     `
   }
 }
-customElements.define("cl-used-addr-list", UsedAddrList)
+customElements.define("cl-recv-addr", RecvAddr)
