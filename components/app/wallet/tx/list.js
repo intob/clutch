@@ -8,6 +8,10 @@ class TxList extends Page {
   static styles = [
     ...super.styles,
     css`
+    cl-card {
+      cursor: pointer;
+    }
+    
     cl-card:hover {
       border-color: var(--signal-color-1)
     }

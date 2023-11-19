@@ -31,6 +31,7 @@ class TxDetail extends Page {
     return html`
     <header>
       <h1><cl-pill class="tip">Transaction</cl-pill>${fmtId(this.tx.txid)}</h1>
+      <cl-pill>${this.tx.confirmations} confirmations</cl-pill>
     </header>
     <h2>Outputs</h2>
     ${map(this.tx.details, i => this.renderOutput(i))}

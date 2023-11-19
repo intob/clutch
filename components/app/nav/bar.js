@@ -78,7 +78,7 @@ class NavBar extends LitElement {
 
   renderWalletItem(w) {
     return html`
-      <cl-link href="#/wallet/${encodeURIComponent(w.name)}">${w.name}</cl-link>
+      <cl-link href="#/wallet/${encodeURIComponent(w.name)}/tx">${w.name}</cl-link>
     `
   }
 }

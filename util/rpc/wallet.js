@@ -10,6 +10,10 @@ export async function getWalletInfo(name) {
 }
 
 export async function selectWallet(name) {
+  if (sessionStorage.selectedWallet === name) {
+    return
+  }
+
   // unload other wallets
   let loaded = false
   const openWallets = await listOpenWallets()
@@ -24,6 +28,8 @@ export async function selectWallet(name) {
   if (!loaded) {
     await loadWallet(name)
   }
+
+  sessionStorage.selectedWallet = name
 }
 
 async function listOpenWallets() {

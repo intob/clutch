@@ -46,11 +46,11 @@ class WalletDetail extends Page {
     <cl-tabs selected=${this.tab}>
       <span slot="tab" tab="tx">Transactions</span>
       <span slot="panel" tab="tx">
-        ${this.wallet && this.renderTxs()}
+        ${this.wallet && this.tab === "tx" && this.renderTxs()}
       </span>
       <span slot="tab" tab="used-addrs">Used Addresses</span>
       <span slot="panel" tab="used-addrs">
-        ${this.wallet && this.renderAddrs()}
+        ${this.wallet && this.tab === "used-addrs" && this.renderAddrs()}
       </span>
       <span slot="tab" tab="send">Send</span>
       <span slot="panel" tab="send">
