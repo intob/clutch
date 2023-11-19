@@ -10,8 +10,9 @@
   --accent-dark-color: #1f1f1f;
   --accent-light-color-1: #818181;
   --accent-light-color-2: #434343;
-  --lighten-color-1: rgba(255,255,255,.075);
-  --lighten-color-2: rgba(255,255,255,.9);
+  --lighten-color-1: rgba(255,255,255,.05);
+  --lighten-color-2: rgba(255,255,255,.075);
+  --lighten-color-3: rgba(255,255,255,.9);
   --darken-color-1: rgba(0,0,0,.1);
   --darken-color-2: rgba(0,0,0,.9);
   --signal-color-1: #801ae6;
@@ -54,12 +55,12 @@ cl-loader, cl-toast {
   z-index: 1;
 }
 
-cl-router, nav {
+cl-router, cl-nav-bar {
   padding: 20px;
 }
 
-cl-router, nav, cl-loader {
+cl-router, cl-nav-bar, cl-loader {
   width: 100vw;
-  max-width: 1200px;
+  max-width: 900px;
   box-sizing: border-box;
 }

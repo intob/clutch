@@ -14,9 +14,9 @@ var (
 )
 
 func init() {
-	flag.StringVar(&rpcOrigin, "rpcOrigin", "http://127.0.0.1:8332", "Origin of bitcoin core RPC server, defaults to http://127.0.0.1:8332")
-	flag.StringVar(&rpcUser, "rpcUser", "", "User for bitcoin core RPC server, required")
-	flag.StringVar(&rpcPassword, "rpcPassword", "", "Password for bitcoin core RPC server, required")
+	flag.StringVar(&rpcOrigin, "rpcorigin", "http://127.0.0.1:8332", "Origin of bitcoin rpc server, defaults to http://127.0.0.1:8332")
+	flag.StringVar(&rpcUser, "rpcuser", "", "User for bitcoin rpc server")
+	flag.StringVar(&rpcPassword, "rpcpassword", "", "Password for bitcoin rpc server")
 	flag.Parse()
 
 	fmt.Println("rpc origin: " + rpcOrigin)
@@ -41,7 +41,9 @@ func handleRpc(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("failed to build request: " + err.Error()))
 		return
 	}
-	coreReq.SetBasicAuth(rpcUser, rpcPassword)
+	if rpcUser != "" && rpcPassword != "" {
+		coreReq.SetBasicAuth(rpcUser, rpcPassword)
+	}
 	resp, err := http.DefaultClient.Do(coreReq)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

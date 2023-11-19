@@ -1,5 +1,6 @@
 import { html, css, LitElement } from "lit"
-import { fmtId } from "../../../util/fmt.js"
+import { map } from "lit/directives/map.js"
+import { listWallets } from "../../../util/rpc/wallet.js"
 
 class NavBar extends LitElement {
 
@@ -25,6 +26,7 @@ class NavBar extends LitElement {
       font-size: 1.2em;
       display: flex;
       align-items: center;
+      justify-content: center;
     }
 
     .logo {
@@ -51,19 +53,33 @@ class NavBar extends LitElement {
     }
     `
   ]
+
+  static properties = {
+    wallets: {}
+  }
+
+  async connectedCallback() {
+    super.connectedCallback()
+    this.wallets = await listWallets()
+  }
   
   render() {
     return html`
     <div class="left">
-      <cl-link href="#/">
-        <div class="home">
-          <!--<img src="" class="logo"/>-->
-          <span>Clutch</span>
-        </div>
+      <cl-link href="#/" class="home">
+        <span class="logo">[~]</span>
+        <span>Clutch</span>
       </cl-link>
+      ${map(this.wallets, w => this.renderWalletItem(w))}
     </div>
     <div class="right"></div>
     `
   }
+
+  renderWalletItem(w) {
+    return html`
+      <cl-link href="#/wallet/${encodeURIComponent(w.name)}">${w.name}</cl-link>
+    `
+  }
 }
-customElements.define("nav-bar", NavBar, { extends: "nav" })
+customElements.define("cl-nav-bar", NavBar)

@@ -38,7 +38,6 @@ class Tabs extends LitElement {
       background-color: var(--lighten-color-1);
       display: none;
       justify-content: center;
-      min-height: 300px;
       padding: 20px;
       align-items: center;
       justify-content: center;

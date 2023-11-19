@@ -5,6 +5,26 @@ export const routes = [
     path: "",
     component: "cl-home",
     action: async() => await import("./components/app/home.js")
+  },
+  {
+    path: "wallet/:walletname", // wallet name is URI encoded
+    component: "cl-wallet-detail",
+    action: async() => await import("./components/app/wallet/detail.js")
+  },
+  {
+    path: "wallet/:walletname/:txid",
+    component: "cl-tx-detail",
+    action: async() => await import("./components/app/wallet/tx/detail.js")
+  },
+  {
+    path: "wallet/import",
+    component: "cl-wallet-import",
+    action: async() => await import("./components/app/wallet/import.js")
+  },
+  {
+    path: "wallet/create",
+    component: "cl-wallet-create",
+    action: async() => await import("./components/app/wallet/create.js")
   }
 ]
 
@@ -19,6 +39,8 @@ importIcons()
 // app
 import("./components/app/nav/bar.js")
 import("./components/app/nav/dropdown.js")
+import("./components/app/wallet/tx/list.js")
+import("./components/app/wallet/addr/used.js")
 // generic
 import("./components/generic/button.js")
 import("./components/generic/card.js")

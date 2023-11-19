@@ -3,21 +3,40 @@ import { css, LitElement } from "lit"
 export class Page extends LitElement {
   static styles = [
     css`
-      :host {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
+    :host {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
 
-      h1, h2 {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-      cl-icon {
-        fill: var(--light-color-2);
-      }
+    h1, h2 {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    cl-icon {
+      fill: var(--light-color-2);
+    }
+
+    .mono {
+      font-family: monospace;
+    }
+
+    .tip {
+      font-size: .4em;
+    }
+
+    .outgoing {
+      color: var(--status-error-color);
+    }
     `
   ]
 }

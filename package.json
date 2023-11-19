@@ -2,7 +2,7 @@
   "name": "clutch",
   "private": true,
   "scripts": {
-    "start": ". proxy.conf; cd webserver; go run . --rpcUser $user --rpcPassword $password",
+    "start": ". proxy.conf; cd webserver; go run . --rpcuser $user --rpcpassword $password",
     "lint": "eslint components/* styles/*.js util/*"
   },
   "dependencies": {

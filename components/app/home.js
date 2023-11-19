@@ -1,5 +1,6 @@
 import { html, css, LitElement } from "lit"
-import { getWalletInfo } from "../../util/rpc/wallet.js"
+import { getWalletInfo, listWallets } from "../../util/rpc/wallet.js"
+import { map } from "lit/directives/map.js"
 
 class Home extends LitElement {
 
@@ -14,6 +15,7 @@ class Home extends LitElement {
     cl-card {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       gap: 20px;
       padding: 20px;
     }
@@ -29,37 +31,38 @@ class Home extends LitElement {
       margin: 0;
     }
 
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style-position: inside;
+    .balance {
+      font-size: 1.4em;
     }
     `
   ]
 
   static properties = {
-    walletInfo: {}
+    wallets: {}
   }
 
   async connectedCallback() {
     super.connectedCallback()
-    this.walletInfo = (await getWalletInfo()).result
+    this.wallets = await listWallets()
+    this.requestUpdate()
   }
   
   render() {
     return html`
-      ${this.walletInfo && this.renderWalletInfo()}
+      ${this.wallets && this.renderAllCards()}
     `
   }
 
-  renderWalletInfo() {
+  renderAllCards() {
+    return map(this.wallets, w => this.renderWalletInfo(w))
+  }
+
+  renderWalletInfo(w) {
+    console.log(w)
     return html`
-      <cl-card>
-        <header>
-          <h2>${this.walletInfo.walletname}</h2>
-        </header>
-        <span>Balance ${this.walletInfo.balance}</span>
-      </cl-card>
+    <cl-card @click=${() => window.location = `#/wallet/${encodeURIComponent(w.name)}`}>
+      <h2>${w.name}</h2>
+    </cl-card>
     `
   }
 }
