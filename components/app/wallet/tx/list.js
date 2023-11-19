@@ -39,6 +39,7 @@ class TxList extends Page {
       <span class="mono">${fmtId(tx.txid)}</span>
       <span class=${parseFloat(tx.amount) < 0 ? "outgoing" : ""}>${tx.amount}</span>
       <span class="mono">${fmtId(tx.address)}</span>
+      <cl-pill>${tx.label}</cl-pill>
     </cl-card>
     `
   }

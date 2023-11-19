@@ -71,13 +71,13 @@ class WalletDetail extends Page {
 
   renderUsedAddrList() {
     return html`
-    <cl-used-addr-list walletname=${this.walletNameDecoded}></cl-used-addr-list>
+    <cl-used-recv-addr-list walletname=${this.walletNameDecoded}></cl-used-recv-addr-list>
     `
   }
 
   renderRecvAddr() {
     return html`
-    <cl-recv-addr walletname=${this.walletNameDecoded}></cl-recv-addr>
+    <cl-unused-recv-addr-list walletname=${this.walletNameDecoded}></cl-unused-recv-addr-list>
     `
   }
 }
