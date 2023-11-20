@@ -57,4 +57,4 @@ class IconLink extends Link {
     `
   }
 }
-customElements.define("icon-link", IconLink)
+customElements.define("cl-icon-link", IconLink)

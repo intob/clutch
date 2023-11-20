@@ -8,6 +8,7 @@ export async function loadIcon(name) {
 export async function importIcons() {
   const icons = await Promise.all([
     loadIcon("label"),
+    loadIcon("logo"),
     loadIcon("received"),
     loadIcon("sent"),
   ])

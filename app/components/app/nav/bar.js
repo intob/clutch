@@ -66,10 +66,7 @@ class NavBar extends LitElement {
   render() {
     return html`
     <div class="left">
-      <cl-link href="#/" class="home">
-        <span class="logo">[~]</span>
-        <span>Clutch</span>
-      </cl-link>
+      <cl-icon-link href="#/" class="home" icon="logo"><span>Clutch</span></cl-icon-link>
       ${map(this.wallets, w => this.renderWalletItem(w))}
     </div>
     <div class="right"></div>

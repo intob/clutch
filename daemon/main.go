@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os/exec"
 
 	"fyne.io/systray"
+	"github.com/intob/clutch/daemon/icon"
 )
 
 func main() {
@@ -12,14 +14,29 @@ func main() {
 }
 
 func onReady() {
+	systray.SetIcon(icon.Data)
 	systray.SetTitle("Clutch")
 	systray.SetTooltip("Tiny bitcoin wallet")
+	addOpenItem()
 	addQuitItem()
 	serve()
 }
 
+func addOpenItem() {
+	mOpen := systray.AddMenuItem("Open", "Open the wallet")
+	mOpen.Enable()
+	go func() {
+		for {
+			<-mOpen.ClickedCh
+			cmd := exec.Command("open", "http://localhost:6102")
+			cmd.Run()
+		}
+	}()
+	systray.AddSeparator()
+}
+
 func addQuitItem() {
-	mQuit := systray.AddMenuItem("Quit", "Quit the whole app")
+	mQuit := systray.AddMenuItem("Quit", "Quit the Clutch app")
 	mQuit.Enable()
 	go func() {
 		<-mQuit.ClickedCh
