@@ -2,7 +2,7 @@
   "name": "clutch",
   "private": true,
   "scripts": {
-    "start": ". ../proxy.conf; cd ../daemon; go run . --rpcuser $user --rpcpassword $password",
+    "start": "cd ../daemon; go run . --appdir ../app --dev",
     "lint": "eslint components/* styles/*.js util/*"
   },
   "dependencies": {

@@ -21,7 +21,6 @@ class TxDetail extends Page {
     super.connectedCallback()
     this.walletNameDecoded = decodeURIComponent(this.walletname)
     this.tx = await getTransaction(this.txid)
-    console.log(this.tx)
   }
 
   render() {

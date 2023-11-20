@@ -1,13 +1,40 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
+	"os"
 	"os/exec"
+	"path"
 
 	"fyne.io/systray"
 	"github.com/intob/clutch/daemon/icon"
 )
+
+var (
+	appDir string
+	dev    bool
+)
+
+func init() {
+	execPath, err := os.Executable()
+	if err != nil {
+		fmt.Println("failed to get working directory: " + err.Error())
+		os.Exit(1)
+	}
+
+	appDirDefault := path.Join(path.Dir(execPath), "app")
+
+	flag.StringVar(&appDir, "appdir", appDirDefault, "Directory of webapp files")
+	flag.BoolVar(&dev, "dev", false, "Output debugging info")
+	flag.Parse()
+
+	if dev {
+		fmt.Println("serving app from: " + appDir)
+		fmt.Println("listening on :6102")
+	}
+}
 
 func main() {
 	systray.Run(onReady, func() {})
@@ -16,7 +43,6 @@ func main() {
 func onReady() {
 	systray.SetIcon(icon.Data)
 	systray.SetTitle("Clutch")
-	systray.SetTooltip("Tiny bitcoin wallet")
 	addOpenItem()
 	addQuitItem()
 	serve()
@@ -47,9 +73,10 @@ func addQuitItem() {
 
 func serve() {
 	http.Handle("/rpc", http.HandlerFunc(handleRpc))
-	http.Handle("/", http.FileServer(http.Dir("../app")))
+	http.Handle("/", http.FileServer(http.Dir(appDir)))
 	err := http.ListenAndServe(":6102", nil)
 	if err != nil {
 		fmt.Println("error: " + err.Error())
+		os.Exit(1)
 	}
 }

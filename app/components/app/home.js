@@ -58,7 +58,6 @@ class Home extends LitElement {
   }
 
   renderWalletInfo(w) {
-    console.log(w)
     return html`
     <cl-card @click=${() => window.location = `#/wallet/${encodeURIComponent(w.name)}/tx`}>
       <h2>${w.name}</h2>

@@ -23,7 +23,6 @@ class UnusedRecvAddrList extends Page {
   }
 
   renderUnusedAddr(a) {
-    console.log(a)
     return html`
     <cl-card>
       <span class="mono">${a.address}</span>
