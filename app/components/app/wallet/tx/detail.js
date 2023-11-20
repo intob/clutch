@@ -40,7 +40,7 @@ class TxDetail extends Page {
   renderOutput(i) {
     return html`
     <cl-card>
-      <cl-icon name=${i.category === "send" ? "sent" : "received"}></cl-icon>
+      <cl-icon name=${i.category === "send" ? "send" : "recv"}></cl-icon>
       <span class="mono">${fmtId(i.address)}</span>
       <span class=${parseFloat(i.amount) < 0 ? "outgoing" : ""}>${i.amount}</span>
       <cl-pill><cl-icon name="label"></cl-icon>${i.label}</cl-pill>

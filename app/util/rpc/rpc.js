@@ -12,7 +12,8 @@ export async function rpc(method, params) {
       params: params
     }),
     headers: {
-      authorization: 'Basic ' + btoa(localStorage.rpcUser + ":" + localStorage.rpcPassword)
+      Authorization: localStorage.rpcUser && 'Basic ' + btoa(localStorage.rpcUser + ":" + localStorage.rpcPassword),
+      "Rpc-Origin": localStorage.rpcOrigin
     }
   })
   Loader.setProgress(job, 1)

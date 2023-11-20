@@ -69,7 +69,9 @@ class NavBar extends LitElement {
       <cl-icon-link href="#/" class="home" icon="logo"><span>Clutch</span></cl-icon-link>
       ${map(this.wallets, w => this.renderWalletItem(w))}
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <cl-icon-link href="#/settings" icon="settings"><span>Settings</span></cl-icon-link>
+    </div>
     `
   }
 

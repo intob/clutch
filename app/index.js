@@ -25,7 +25,12 @@ export const routes = [
     path: "wallet/create",
     component: "cl-wallet-create",
     action: async() => await import("./components/app/wallet/create.js")
-  }
+  },
+  {
+    path: "settings",
+    component: "cl-settings",
+    action: async() => await import("./components/app/settings/settings.js")
+  },
 ]
 
 addEventListener("hashchange", e => {

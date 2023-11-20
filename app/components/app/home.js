@@ -1,66 +1,40 @@
-import { html, css, LitElement } from "lit"
-import { map } from "lit/directives/map.js"
-import { listWallets } from "../../util/rpc/wallet.js"
+import { html, css } from "lit"
+import { getNetworkInfo } from "../../util/rpc/network.js"
+import { Page } from "../generic/page.js"
 
-class Home extends LitElement {
+class Home extends Page {
 
   static styles = [
+    ...super.styles,
     css`
-    :host {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    cl-card {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    header {
-      display: flex;
-      gap: 20px;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    h2 {
-      margin: 0;
-    }
-
-    .balance {
-      font-size: 1.4em;
-    }
     `
   ]
 
   static properties = {
-    wallets: {}
+    networkInfo: {}
   }
 
   async connectedCallback() {
     super.connectedCallback()
-    this.wallets = await listWallets()
-    this.requestUpdate()
+    this.networkInfo = await getNetworkInfo()
   }
   
   render() {
+    if (!this.networkInfo) {
+      return
+    }
     return html`
-      ${this.wallets && this.renderAllCards()}
-    `
-  }
-
-  renderAllCards() {
-    return map(this.wallets, w => this.renderWalletInfo(w))
-  }
-
-  renderWalletInfo(w) {
-    return html`
-    <cl-card @click=${() => window.location = `#/wallet/${encodeURIComponent(w.name)}/tx`}>
-      <h2>${w.name}</h2>
+    <h1>Node info</h1>
+    <cl-card>
+      <h3>Version</h3>
+      <cl-pill>${this.networkInfo.subversion}</cl-pill>
+      <cl-pill>${this.networkInfo.protocolversion}</cl-pill>
+    </cl-card>
+    <cl-card>
+      <h3>Network</h3>
+      <cl-pill>${this.networkInfo.networkactive ? "CONNECTED" : "DISCONNECTED"}</cl-pill>
+      <cl-pill><cl-icon name="recv"></cl-icon>${this.networkInfo.connections_in}</cl-pill>
+      <cl-pill><cl-icon name="send"></cl-icon>${this.networkInfo.connections_out}</cl-pill>
     </cl-card>
     `
   }

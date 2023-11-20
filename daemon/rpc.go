@@ -6,7 +6,7 @@ import (
 )
 
 func handleRpc(w http.ResponseWriter, r *http.Request) {
-	rpcOrigin := r.Header.Get("RPC_ORIGIN")
+	rpcOrigin := r.Header.Get("RPC-ORIGIN")
 	if rpcOrigin == "" {
 		rpcOrigin = "http://localhost:8332"
 	}
