@@ -2,7 +2,7 @@ import { css, html } from "lit";
 import { map } from "lit/directives/map.js";
 import { Page } from "../../../generic/page.js";
 import { listTx } from "../../../../util/rpc/tx.js";
-import { fmtId } from "../../../../util/fmt.js"
+import { fmtDate, fmtId } from "../../../../util/fmt.js"
 
 class TxList extends Page {
   static styles = [
@@ -36,10 +36,11 @@ class TxList extends Page {
     return html`
     <cl-card @click=${() => window.location = `#/wallet/${encodeURIComponent(this.walletname)}/tx/${tx.txid}`}>
       <cl-icon name=${tx.category === "send" ? "sent" : "received"}></cl-icon>
+      <span>${fmtDate(tx.blocktime)}</span>
       <span class="mono">${fmtId(tx.txid)}</span>
       <span class=${parseFloat(tx.amount) < 0 ? "outgoing" : ""}>${tx.amount}</span>
-      <span class="mono">${fmtId(tx.address)}</span>
-      <cl-pill>${tx.label}</cl-pill>
+      <span>${tx.confirmations}</span>
+      <cl-pill><cl-icon name="label"></cl-icon>${tx.label}</cl-pill>
     </cl-card>
     `
   }

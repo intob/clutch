@@ -37,7 +37,7 @@ class UnusedRecvAddrList extends Page {
       return
     }
     return html`
-    <cl-pill>${l}</cl-pill>
+    <cl-pill><cl-icon name="label"></cl-icon>${l}</cl-pill>
     `
   }
 }

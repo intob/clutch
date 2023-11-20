@@ -1,5 +1,5 @@
 export function fmtDate(date) {
-  const parsed = new Date(date)
+  const parsed = new Date(date*1000)
   if (parsed.toDateString() === "Invalid Date") {
     return
   }

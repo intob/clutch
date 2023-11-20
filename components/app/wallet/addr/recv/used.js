@@ -24,7 +24,7 @@ class UsedRecvAddrList extends Page {
     return html`
     <cl-card>
       <span class="mono">${a.address}</span>
-      <cl-pill>${a.label}</cl-pill>
+      <cl-pill><cl-icon name="label"></cl-icon>${a.label}</cl-pill>
     </cl-card>
     `
   }
