@@ -1,0 +1,14 @@
+{
+  "name": "clutch",
+  "private": true,
+  "scripts": {
+    "start": ". ../proxy.conf; cd ../server; go run . --rpcuser $user --rpcpassword $password",
+    "lint": "eslint components/* styles/*.js util/*"
+  },
+  "dependencies": {
+    "lit": "3.0.2"
+  },
+  "devDependencies": {
+    "eslint": "latest"
+  }
+}
