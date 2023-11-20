@@ -1,11 +1,11 @@
 import { rpc } from "./rpc.js"
 
 export async function listUsedRecvAddr() {
-  return (await rpc("listreceivedbyaddress", [1, false, false])).result
+  return (await rpc("listreceivedbyaddress", [ 1, false, false ])).result
 }
 
 export async function listUnusedRecvAddr() {
-  const addrs = (await rpc("listreceivedbyaddress", [0, true, false])).result
+  const addrs = (await rpc("listreceivedbyaddress", [ 0, true, false ])).result
   const unused = addrs.filter(a => a.txids.length === 0)
   let myUnused = []
   for await (const a of unused) {
@@ -18,9 +18,9 @@ export async function listUnusedRecvAddr() {
 }
 
 export async function getNewAddr(label) {
-  return rpc("getnewaddress", [label])
+  return rpc("getnewaddress", [ label ])
 }
 
 async function getAddrInfo(addr) {
-  return (await rpc("getaddressinfo", [addr])).result
+  return (await rpc("getaddressinfo", [ addr ])).result
 }

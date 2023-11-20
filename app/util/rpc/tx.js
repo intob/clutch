@@ -7,5 +7,5 @@ export async function listTx(walletName) {
 }
 
 export async function getTransaction(txId) {
-  return (await rpc("gettransaction", [txId])).result
+  return (await rpc("gettransaction", [ txId ])).result
 }

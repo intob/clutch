@@ -1,8 +1,8 @@
-import { html } from "lit";
-import { map } from "lit/directives/map.js";
-import { Page } from "../../../generic/page.js";
-import { getTransaction } from "../../../../util/rpc/tx.js";
-import { fmtId } from "../../../../util/fmt.js";
+import { html } from "lit"
+import { map } from "lit/directives/map.js"
+import { Page } from "../../../generic/page.js"
+import { getTransaction } from "../../../../util/rpc/tx.js"
+import { fmtId } from "../../../../util/fmt.js"
 
 class TxDetail extends Page {
   static properties = {

@@ -12,7 +12,7 @@ export async function rpc(method, params) {
       params: params
     }),
     headers: {
-      Authorization: localStorage.rpcUser && 'Basic ' + btoa(localStorage.rpcUser + ":" + localStorage.rpcPassword),
+      Authorization: basicAuth(),
       "Rpc-Origin": localStorage.rpcOrigin
     }
   })
@@ -21,4 +21,11 @@ export async function rpc(method, params) {
     return
   }
   return resp.json()
+}
+
+function basicAuth() {
+  if (!localStorage.rpcUser) {
+    return
+  }
+  return "Basic " + btoa(localStorage.rpcUser + ":" + localStorage.rpcPassword)
 }

@@ -1,8 +1,8 @@
-import { html } from "lit";
-import { map } from "lit/directives/map.js";
-import { selectWallet } from "../../../../../util/rpc/wallet.js";
-import { Page } from "../../../../generic/page.js";
-import { listUnusedRecvAddr } from "../../../../../util/rpc/addr.js";
+import { html } from "lit"
+import { map } from "lit/directives/map.js"
+import { selectWallet } from "../../../../../util/rpc/wallet.js"
+import { Page } from "../../../../generic/page.js"
+import { listUnusedRecvAddr } from "../../../../../util/rpc/addr.js"
 
 class UnusedRecvAddrList extends Page {
   static properties = {

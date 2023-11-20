@@ -1,5 +1,4 @@
 import { html, css } from "lit"
-import { getNetworkInfo } from "../../../util/rpc/network.js"
 import { Page } from "../../generic/page.js"
 
 class Settings extends Page {

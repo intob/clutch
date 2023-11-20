@@ -1,5 +1,5 @@
-import { html } from "lit";
-import { Page } from "../../generic/page.js";
+import { html } from "lit"
+import { Page } from "../../generic/page.js"
 
 class Import extends Page {
 

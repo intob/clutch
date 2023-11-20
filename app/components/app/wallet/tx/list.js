@@ -1,7 +1,7 @@
-import { css, html } from "lit";
-import { map } from "lit/directives/map.js";
-import { Page } from "../../../generic/page.js";
-import { listTx } from "../../../../util/rpc/tx.js";
+import { css, html } from "lit"
+import { map } from "lit/directives/map.js"
+import { Page } from "../../../generic/page.js"
+import { listTx } from "../../../../util/rpc/tx.js"
 import { fmtDate, fmtId } from "../../../../util/fmt.js"
 
 class TxList extends Page {

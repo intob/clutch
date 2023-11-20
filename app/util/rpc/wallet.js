@@ -37,9 +37,9 @@ async function listOpenWallets() {
 }
 
 async function loadWallet(name) {
-  return rpc("loadwallet", [name])
+  return rpc("loadwallet", [ name ])
 }
 
 async function unloadWallet(name) {
-  return rpc("unloadwallet", [name])
+  return rpc("unloadwallet", [ name ])
 }

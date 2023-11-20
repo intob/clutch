@@ -1,6 +1,6 @@
-import { css, html } from "lit";
-import { Page } from "../../generic/page.js";
-import { getWalletInfo } from "../../../util/rpc/wallet.js";
+import { css, html } from "lit"
+import { Page } from "../../generic/page.js"
+import { getWalletInfo } from "../../../util/rpc/wallet.js"
 
 class WalletDetail extends Page {
 
