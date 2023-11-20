@@ -26,6 +26,10 @@ export class Page extends LitElement {
       fill: var(--light-color-2);
     }
 
+    cl-icon.outgoing {
+      fill: var(--status-red-color);
+    }
+
     .mono {
       font-family: monospace;
     }
@@ -35,7 +39,7 @@ export class Page extends LitElement {
     }
 
     .outgoing {
-      color: var(--status-error-color);
+      color: var(--status-red-color);
     }
     `
   ]
