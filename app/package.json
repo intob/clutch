@@ -6,7 +6,7 @@
     "lint": "eslint components/* util/*"
   },
   "dependencies": {
-    "lit": "3.0.2"
+    "lit": "3.1.0"
   },
   "devDependencies": {
     "eslint": "latest"
