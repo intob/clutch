@@ -11,10 +11,15 @@ class WalletDetail extends Page {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 20px;
     }
 
     .balance {
       font-size: 1.5em;
+    }
+
+    .unconfirmed {
+      color: var(--signal-color-2);
     }
     `
   ]
@@ -41,7 +46,8 @@ class WalletDetail extends Page {
     return html`
     <header>
       <h1><cl-pill class="tip">Wallet</cl-pill>${decodeURIComponent(this.walletname)}</h1>
-      <cl-pill class="balance">${this.wallet?.balance} BTC</cl-pill>
+      ${this.renderBalanceUnconfirmed()}
+      ${this.renderBalance()}
     </header>
     <cl-tabs selected=${this.tab}>
       <span slot="tab" tab="tx">Transactions</span>
@@ -60,6 +66,24 @@ class WalletDetail extends Page {
         ${this.wallet && this.tab === "recv" && this.renderRecvAddr()}
       </span>
     </cl-tabs>
+    `
+  }
+
+  renderBalance() {
+    return html`
+    <cl-pill class="balance">${this.wallet?.balance}</cl-pill>
+    `
+  }
+
+  renderBalanceUnconfirmed() {
+    if (!this.wallet) {
+      return
+    }
+    if (this.wallet.unconfirmed_balance === 0) {
+      return
+    }
+    return html`
+    <cl-pill class="balance unconfirmed">${this.wallet?.unconfirmed_balance}</cl-pill>
     `
   }
 
